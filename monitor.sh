@@ -30,4 +30,8 @@ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6 >> $LOGFILE
 echo "====================================" >> $LOGFILE
 echo "" >> $LOGFILE
 
+# Uptime
+echo "System Uptime">>$LOGFILE
+uptime -p >> $LOGFILE
+
 echo "Report saved to $LOGFILE"
