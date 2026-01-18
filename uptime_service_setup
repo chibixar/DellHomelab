@@ -1,0 +1,11 @@
+chmod +x /usr/local/bin/uptime_check.sh
+systemctl daemon-reload
+systemctl enable --now uptime-check.service
+sudo bash -c 'for i in {1..30}; do ls /var/log >> /var/log/uptime_check/overload; done;’ #cleanup check
+pkill uptime_check.sh
+apt install -y stress
+stress --cpu $(nproc) --timeout 50s
+tail -f /var/log/uptime_check/overload
+jobs
+fg %1
+pkill ping
